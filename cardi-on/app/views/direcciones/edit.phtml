@@ -1,0 +1,81 @@
+
+<?php echo $this->getContent(); ?>
+
+<?php echo $this->tag->form("direcciones/save") ?>
+
+<table width="100%">
+    <tr>
+        <td align="left"><?php echo $this->tag->linkTo(array("direcciones", "Back")) ?></td>
+        <td align="right"><?php echo $this->tag->submitButton("Save") ?></td>
+    <tr>
+</table>
+
+<div align="center">
+    <h1>Edit direcciones</h1>
+</div>
+
+<table>
+    <tr>
+        <td align="right">
+            <label for="direccion_pais">Direccion Of Pais</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_pais", "size" => 30)) ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="direccion_provincia">Direccion Of Provincia</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_provincia", "size" => 30)) ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="direccion_localidad">Direccion Of Localidad</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_localidad", "size" => 30)) ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="direccion_calle">Direccion Of Calle</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_calle", "size" => 30)) ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="direccion_coordx">Direccion Of Coordx</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_coordx", "size" => 30)) ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="direccion_coordy">Direccion Of Coordy</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_coordy", "size" => 30)) ?>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <label for="direccion_coord">Direccion Of Coord</label>
+        </td>
+        <td align="left">
+            <?php echo $this->tag->textField(array("direccion_coord", "size" => 30)) ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td><?php echo $this->tag->hiddenField("id") ?></td>
+        <td><?php echo $this->tag->submitButton("Search") ?></td>
+    </tr>
+</table>
+
+</form>

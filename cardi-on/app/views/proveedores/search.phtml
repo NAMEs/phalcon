@@ -1,0 +1,54 @@
+<?php use Phalcon\Tag; ?>
+
+<?php echo $this->getContent(); ?>
+
+<table width="100%">
+    <tr>
+        <td align="left">
+            <?php echo $this->tag->linkTo(array("proveedores/index", "Go Back")); ?>
+        </td>
+        <td align="right">
+            <?php echo $this->tag->linkTo(array("proveedores/new", "Create ")); ?>
+        </td>
+    <tr>
+</table>
+
+<table class="browse" align="center">
+    <thead>
+        <tr>
+            <th>Proveedor</th>
+            <th>Proveedor Of Nombre</th>
+            <th>Proveedor Of Email</th>
+            <th>Proveedor Of Telefono</th>
+            <th>Proveedor Of Celular</th>
+         </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($page->items as $proveedore) { ?>
+        <tr>
+            <td><?php echo $proveedore->proveedor_id ?></td>
+            <td><?php echo $proveedore->proveedor_nombre ?></td>
+            <td><?php echo $proveedore->proveedor_email ?></td>
+            <td><?php echo $proveedore->proveedor_telefono ?></td>
+            <td><?php echo $proveedore->proveedor_celular ?></td>
+            <td><?php echo $this->tag->linkTo(array("proveedores/edit/" . $proveedore->proveedor_id, "Edit")); ?></td>
+            <td><?php echo $this->tag->linkTo(array("proveedores/delete/" . $proveedore->proveedor_id, "Delete")); ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+    <tbody>
+        <tr>
+            <td colspan="2" align="right">
+                <table align="center">
+                    <tr>
+                        <td><?php echo $this->tag->linkTo("proveedores/search", "First") ?></td>
+                        <td><?php echo $this->tag->linkTo("proveedores/search?page=" . $page->before, "Previous") ?></td>
+                        <td><?php echo $this->tag->linkTo("proveedores/search?page=" . $page->next, "Next") ?></td>
+                        <td><?php echo $this->tag->linkTo("proveedores/search?page=" . $page->last, "Last") ?></td>
+                        <td><?php echo $page->current, "/", $page->total_pages ?></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    <tbody>
+</table>

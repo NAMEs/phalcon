@@ -1,0 +1,60 @@
+<?php use Phalcon\Tag; ?>
+
+<?php echo $this->getContent(); ?>
+
+<table width="100%">
+    <tr>
+        <td align="left">
+            <?php echo $this->tag->linkTo(array("direcciones/index", "Go Back")); ?>
+        </td>
+        <td align="right">
+            <?php echo $this->tag->linkTo(array("direcciones/new", "Create ")); ?>
+        </td>
+    <tr>
+</table>
+
+<table class="browse" align="center">
+    <thead>
+        <tr>
+            <th>Direccion</th>
+            <th>Direccion Of Pais</th>
+            <th>Direccion Of Provincia</th>
+            <th>Direccion Of Localidad</th>
+            <th>Direccion Of Calle</th>
+            <th>Direccion Of Coordx</th>
+            <th>Direccion Of Coordy</th>
+            <th>Direccion Of Coord</th>
+         </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($page->items as $direccione) { ?>
+        <tr>
+            <td><?php echo $direccione->direccion_id ?></td>
+            <td><?php echo $direccione->direccion_pais ?></td>
+            <td><?php echo $direccione->direccion_provincia ?></td>
+            <td><?php echo $direccione->direccion_localidad ?></td>
+            <td><?php echo $direccione->direccion_calle ?></td>
+            <td><?php echo $direccione->direccion_coordx ?></td>
+            <td><?php echo $direccione->direccion_coordy ?></td>
+            <td><?php echo $direccione->direccion_coord ?></td>
+            <td><?php echo $this->tag->linkTo(array("direcciones/edit/" . $direccione->direccion_id, "Edit")); ?></td>
+            <td><?php echo $this->tag->linkTo(array("direcciones/delete/" . $direccione->direccion_id, "Delete")); ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+    <tbody>
+        <tr>
+            <td colspan="2" align="right">
+                <table align="center">
+                    <tr>
+                        <td><?php echo $this->tag->linkTo("direcciones/search", "First") ?></td>
+                        <td><?php echo $this->tag->linkTo("direcciones/search?page=" . $page->before, "Previous") ?></td>
+                        <td><?php echo $this->tag->linkTo("direcciones/search?page=" . $page->next, "Next") ?></td>
+                        <td><?php echo $this->tag->linkTo("direcciones/search?page=" . $page->last, "Last") ?></td>
+                        <td><?php echo $page->current, "/", $page->total_pages ?></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    <tbody>
+</table>

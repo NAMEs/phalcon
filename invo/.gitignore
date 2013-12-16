@@ -1,4 +1,5 @@
-app/config/config.ini*
+app/config/*.ini
 cache/volt/*.php
 nbproject
 nbproject/
+nbproject/*
