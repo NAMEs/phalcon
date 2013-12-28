@@ -1,0 +1,54 @@
+<?php use Phalcon\Tag; ?>
+
+<?php echo $this->getContent(); ?>
+
+<table width="100%">
+    <tr>
+        <td align="left">
+            <?php echo $this->tag->linkTo(array("usuarios/index", "Go Back")); ?>
+        </td>
+        <td align="right">
+            <?php echo $this->tag->linkTo(array("usuarios/new", "Create ")); ?>
+        </td>
+    <tr>
+</table>
+
+<table class="browse" align="center">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Usuario Of Rol</th>
+            <th>Usuario Of Nombre</th>
+            <th>Usuario Of Login</th>
+            <th>Usuario Of Password</th>
+         </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($page->items as $usuario) { ?>
+        <tr>
+            <td><?php echo $usuario->usuario_id ?></td>
+            <td><?php echo $usuario->usuario_rol ?></td>
+            <td><?php echo $usuario->usuario_nombre ?></td>
+            <td><?php echo $usuario->usuario_login ?></td>
+            <td><?php echo $usuario->usuario_password ?></td>
+            <td><?php echo $this->tag->linkTo(array("usuarios/edit/" . $usuario->usuario_id, "Edit")); ?></td>
+            <td><?php echo $this->tag->linkTo(array("usuarios/delete/" . $usuario->usuario_id, "Delete")); ?></td>
+        </tr>
+    <?php } ?>
+    </tbody>
+    <tbody>
+        <tr>
+            <td colspan="2" align="right">
+                <table align="center">
+                    <tr>
+                        <td><?php echo $this->tag->linkTo("usuarios/search", "First") ?></td>
+                        <td><?php echo $this->tag->linkTo("usuarios/search?page=" . $page->before, "Previous") ?></td>
+                        <td><?php echo $this->tag->linkTo("usuarios/search?page=" . $page->next, "Next") ?></td>
+                        <td><?php echo $this->tag->linkTo("usuarios/search?page=" . $page->last, "Last") ?></td>
+                        <td><?php echo $page->current, "/", $page->total_pages ?></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    <tbody>
+</table>

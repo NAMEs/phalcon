@@ -51,5 +51,9 @@ class Direcciones extends \Phalcon\Mvc\Model
      * @var string
      */
     public $direccion_coord;
+    
+    public function initialize() {
+        $this->hasMany("direccion_id", "ProveedoresDirecciones", "direccion_id");
+    }    
      
 }

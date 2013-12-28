@@ -3,22 +3,19 @@
 use Phalcon\Mvc\Model\Criteria,
     Phalcon\Paginator\Adapter\Model as Paginator;
 
-class ProveedoresController extends ControllerBase
-{
+class ProveedoresController extends ControllerBase {
 
     /**
      * Index action
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $this->persistent->parameters = null;
     }
 
     /**
      * Searches for proveedores
      */
-    public function searchAction()
-    {
+    public function searchAction() {
 
         $numberPage = 1;
         if ($this->request->isPost()) {
@@ -38,14 +35,14 @@ class ProveedoresController extends ControllerBase
         if (count($proveedores) == 0) {
             $this->flash->notice("The search did not find any proveedores");
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "index"
+                        "controller" => "proveedores",
+                        "action" => "index"
             ));
         }
 
         $paginator = new Paginator(array(
             "data" => $proveedores,
-            "limit"=> 10,
+            "limit" => 10,
             "page" => $numberPage
         ));
 
@@ -55,9 +52,8 @@ class ProveedoresController extends ControllerBase
     /**
      * Displayes the creation form
      */
-    public function newAction()
-    {
-
+    public function newAction() {
+        
     }
 
     /**
@@ -65,8 +61,7 @@ class ProveedoresController extends ControllerBase
      *
      * @param string $proveedor_id
      */
-    public function editAction($proveedor_id)
-    {
+    public function editAction($proveedor_id) {
 
         if (!$this->request->isPost()) {
 
@@ -74,8 +69,8 @@ class ProveedoresController extends ControllerBase
             if (!$proveedore) {
                 $this->flash->error("proveedore was not found");
                 return $this->dispatcher->forward(array(
-                    "controller" => "proveedores",
-                    "action" => "index"
+                            "controller" => "proveedores",
+                            "action" => "index"
                 ));
             }
 
@@ -86,20 +81,18 @@ class ProveedoresController extends ControllerBase
             $this->tag->setDefault("proveedor_email", $proveedore->proveedor_email);
             $this->tag->setDefault("proveedor_telefono", $proveedore->proveedor_telefono);
             $this->tag->setDefault("proveedor_celular", $proveedore->proveedor_celular);
-            
         }
     }
 
     /**
      * Creates a new proveedore
      */
-    public function createAction()
-    {
+    public function createAction() {
 
         if (!$this->request->isPost()) {
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "index"
+                        "controller" => "proveedores",
+                        "action" => "index"
             ));
         }
 
@@ -110,37 +103,35 @@ class ProveedoresController extends ControllerBase
         $proveedore->proveedor_email = $this->request->getPost("proveedor_email");
         $proveedore->proveedor_telefono = $this->request->getPost("proveedor_telefono");
         $proveedore->proveedor_celular = $this->request->getPost("proveedor_celular");
-        
+
 
         if (!$proveedore->save()) {
             foreach ($proveedore->getMessages() as $message) {
                 $this->flash->error($message);
             }
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "new"
+                        "controller" => "proveedores",
+                        "action" => "new"
             ));
         }
 
         $this->flash->success("proveedore was created successfully");
         return $this->dispatcher->forward(array(
-            "controller" => "proveedores",
-            "action" => "index"
+                    "controller" => "proveedores",
+                    "action" => "index"
         ));
-
     }
 
     /**
      * Saves a proveedore edited
      *
      */
-    public function saveAction()
-    {
+    public function saveAction() {
 
         if (!$this->request->isPost()) {
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "index"
+                        "controller" => "proveedores",
+                        "action" => "index"
             ));
         }
 
@@ -150,8 +141,8 @@ class ProveedoresController extends ControllerBase
         if (!$proveedore) {
             $this->flash->error("proveedore does not exist " . $proveedor_id);
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "index"
+                        "controller" => "proveedores",
+                        "action" => "index"
             ));
         }
 
@@ -160,7 +151,7 @@ class ProveedoresController extends ControllerBase
         $proveedore->proveedor_email = $this->request->getPost("proveedor_email");
         $proveedore->proveedor_telefono = $this->request->getPost("proveedor_telefono");
         $proveedore->proveedor_celular = $this->request->getPost("proveedor_celular");
-        
+
 
         if (!$proveedore->save()) {
 
@@ -169,18 +160,17 @@ class ProveedoresController extends ControllerBase
             }
 
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "edit",
-                "params" => array($proveedore->proveedor_id)
+                        "controller" => "proveedores",
+                        "action" => "edit",
+                        "params" => array($proveedore->proveedor_id)
             ));
         }
 
         $this->flash->success("proveedore was updated successfully");
         return $this->dispatcher->forward(array(
-            "controller" => "proveedores",
-            "action" => "index"
+                    "controller" => "proveedores",
+                    "action" => "index"
         ));
-
     }
 
     /**
@@ -188,34 +178,33 @@ class ProveedoresController extends ControllerBase
      *
      * @param string $proveedor_id
      */
-    public function deleteAction($proveedor_id)
-    {
+    public function deleteAction($proveedor_id) {
 
         $proveedore = Proveedores::findFirstByproveedor_id($proveedor_id);
         if (!$proveedore) {
             $this->flash->error("proveedore was not found");
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "index"
+                        "controller" => "proveedores",
+                        "action" => "index"
             ));
         }
 
         if (!$proveedore->delete()) {
 
-            foreach ($proveedore->getMessages() as $message){
+            foreach ($proveedore->getMessages() as $message) {
                 $this->flash->error($message);
             }
 
             return $this->dispatcher->forward(array(
-                "controller" => "proveedores",
-                "action" => "search"
+                        "controller" => "proveedores",
+                        "action" => "search"
             ));
         }
 
         $this->flash->success("proveedore was deleted successfully");
         return $this->dispatcher->forward(array(
-            "controller" => "proveedores",
-            "action" => "index"
+                    "controller" => "proveedores",
+                    "action" => "index"
         ));
     }
 
