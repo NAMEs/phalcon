@@ -21,15 +21,8 @@ class ProveedoresDirecciones extends \Phalcon\Mvc\Model {
     public $direccion_id;
 
     public function initialize() {
-        $this->belongsTo("proveedor_id", "Proveedores", "proveedor_id", array(
-            "foreignKey" => true
-        ));
-
-        $this->belongsTo("direccion_id", "Direcciones", "direccion_id", array(
-            "foreignKey" => array(
-                "message" => "The direccion_id does not exist on the Direcciones model"
-            )
-        ));
+        $this->belongsTo("proveedor_id", "Proveedores", "proveedor_id");
+        $this->belongsTo("direccion_id", "Direcciones", "direccion_id");
     }
 
 }
