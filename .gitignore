@@ -1,10 +1,1 @@
-cardi-on/app/config/*.php
-cardi-on/app/cache/volt/*.php
-cardi-on/nbproject
-cardi-on/nbproject/*
-cardi-on/nbproject/private/*
-invo/app/config/*.ini
-invo/cache/volt/*.php
-invo/nbproject
-invo/nbproject/*
-invo/nbproject/private/*
+framework/app/cache/
