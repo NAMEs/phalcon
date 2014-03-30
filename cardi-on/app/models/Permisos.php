@@ -33,5 +33,9 @@ class Permisos extends \Phalcon\Mvc\Model
      * @var string
      */
     public $permiso_accion;
+    
+    public function initialize() {
+        $this->hasMany("permiso_id", "RolesPermisos", "permiso_id");
+    }
      
 }

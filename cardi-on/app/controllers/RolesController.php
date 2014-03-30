@@ -57,7 +57,7 @@ class RolesController extends ControllerBase
      */
     public function newAction()
     {
-
+        
     }
 
     /**

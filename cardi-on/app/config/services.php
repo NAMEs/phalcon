@@ -26,26 +26,19 @@ $di->set('url', function() use ($config) {
  * Setting up the view component
  */
 $di->set('view', function() use ($config) {
-
     $view = new View();
-
     $view->setViewsDir($config->application->viewsDir);
-
-    $view->registerEngines(array(
-        '.volt' => function($view, $di) use ($config) {
-
-    $volt = new VoltEngine($view, $di);
-
-    $volt->setOptions(array(
-        'compiledPath' => $config->application->cacheDir,
-        'compiledSeparator' => '_'
-    ));
-
-    return $volt;
-},
+    $view->registerEngines(array('.volt' => 
+        function($view, $di) use ($config) {
+            $volt = new VoltEngine($view, $di);
+            $volt->setOptions(array(
+                'compiledPath' => $config->application->cacheDir,
+                'compiledSeparator' => '_'
+            ));
+            return $volt;
+        },
         '.phtml' => 'Phalcon\Mvc\View\Engine\Php'
     ));
-
     return $view;
 }, true);
 

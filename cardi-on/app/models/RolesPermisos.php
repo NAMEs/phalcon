@@ -21,5 +21,10 @@ class RolesPermisos extends \Phalcon\Mvc\Model
      * @var integer
      */
     public $permiso_id;
+    
+    public function initialize() {
+        $this->belongsTo("rol_id", "Roles", "rol_id");
+        $this->belongsTo("permiso_id", "Permisos", "permiso_id");
+    }    
      
 }
